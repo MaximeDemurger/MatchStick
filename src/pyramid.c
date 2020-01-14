@@ -7,9 +7,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-
-#include <stddef.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 char *middle(int col_size, char const *last_one);
 
@@ -46,13 +44,13 @@ char **generate_matches(int size, char **tab)
     int col_size = checking_col(size);
 
     while (i < size + 2) {
-        if (i == 0 || i == (size + 1))
+        if (i == 0 || (i == (size + 1)))
             tab[i] = high_down(col_size);
         else
             tab[i] = middle(col_size, tab[i - 1]);
         i++;
     }
-    tab[size + 3] = NULL;
+    tab[size + 2] = NULL;
     return tab;
 }
 

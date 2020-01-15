@@ -25,6 +25,7 @@ int matchstick(char **av)
 {
     int size = 0;
     int stick_take = 0;
+    int return_loop = 0;
 
     if (av[1] == NULL || av[2] == NULL)
         return 84;
@@ -32,8 +33,8 @@ int matchstick(char **av)
         return 84;
     if (game_check(size, stick_take) < 0)
         return 84;
-    if (game_loop(size, stick_take) < 0)
+    if ((return_loop = game_loop(size, stick_take)) < 0)
         return 84;
-    return 0;
+    return return_loop;
 }
 

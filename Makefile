@@ -18,14 +18,14 @@ SRCS	= 	./src/main.c \
 	  	./src/game_loop.c \
 	  	./src/matchstick.c \
 	  	./src/pyramid.c \
-	  	./src/my/modifyStr.c \
+	  	./src/my/modify_str.c \
 	  	./src/my/my_put_nbr.c \
 	  	./src/my/my_putchar.c \
 	  	./src/my/my_strdup.c \
 		./src/ai_move.c \
 		./src/check_end.c \
 		./src/count_stick.c \
-		./src/modifyMap.c \
+		./src/modify_map.c \
 		./src/middle.c \
 		./src/player_move.c \
 		./src/select_line.c \

@@ -9,9 +9,11 @@
 
 int main(int ac, char **av)
 {
+    int return_matchstick = 0;
+
     if (ac < 3 || ac > 3)
         return 84;
-    if (matchstick(av) != 0)
+    if ((return_matchstick = matchstick(av)) < 0)
         return 84;
-    return 0;
+    return return_matchstick;
 }

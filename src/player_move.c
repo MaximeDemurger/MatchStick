@@ -7,9 +7,9 @@
 
 #include "matchstick.h"
 
-int check_matches(char **tab, int line, int stick)
+int check_matches(char **tab, long int line, long int stick)
 {
-    int nbr_stick = 0;
+    long int nbr_stick = 0;
     int i = 0;
 
     while (tab[line][i]) {
@@ -26,8 +26,8 @@ int check_matches(char **tab, int line, int stick)
 
 char **player_move(char **tab, int size, int maxStick, int *turn)
 {
-    int line = 0;
-    int stick_taken = 0;
+    long int line = 0;
+    long int stick_taken = 0;
     int return_check = 0;
     bool good_match = false;
 
@@ -38,7 +38,8 @@ char **player_move(char **tab, int size, int maxStick, int *turn)
         if (return_check != -1)
             good_match = true;
     }
-    tab[line] = modifyMap(tab, line, stick_taken);
+    tab[line] = modify_map(tab, line, stick_taken);
+    my_printf("Player removed %d match(es) from line %d\n", stick_taken, line);
     *turn = 1;
     return tab;
 }

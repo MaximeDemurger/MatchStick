@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** CPE_matchstick_2019
 ** File description:
-** modifyMap.c
+** modify_map.c
 */
 
 #include <stddef.h>
@@ -19,7 +19,7 @@ int tab_size(char **tab)
     return i;
 }
 
-int select_first_one(char **tab, int line)
+int select_first_one(char **tab, long int line)
 {
     int col = 0;
 
@@ -28,7 +28,7 @@ int select_first_one(char **tab, int line)
     return col;
 }
 
-int last_on_line(char **tab, int line)
+int last_on_line(char **tab, long int line)
 {
     int i = select_first_one(tab, line);
 
@@ -42,7 +42,7 @@ int last_on_line(char **tab, int line)
     return 0;
 }
 
-char *modifyMap(char **tab, int line, int stick_taken)
+char *modify_map(char **tab, long int line, long int stick_taken)
 {
     int last_stick = last_on_line(tab, line);
     char **new_tab = malloc(sizeof(char *) * tab_size(tab));

@@ -11,7 +11,7 @@
 char defineChar(int i, int col_size, int first_line, char const *last_one)
 {
     if ((first_line == 0 && i == col_size / 2) || (first_line > 0 &&
-    last_one[i + 1] == '|') || (last_one[i] == '|') || (last_one[i - 1] == '|'))
+    last_one[i + 1] == '|') || last_one[i] == '|' || last_one[i - 1] == '|')
         return '|';
     else
         return ' ';

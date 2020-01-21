@@ -39,7 +39,7 @@ char **player_move(char **tab, int size, int maxStick, int *turn)
     bool good_match = false;
     game_t *game = malloc(sizeof(game_t *));
 
-    my_putstr("Your turn...\n");
+    my_putstr("Your turn:\n");
     while (good_match == false) {
         if (playing(game, size, maxStick, tab) == 1)
             return NULL;

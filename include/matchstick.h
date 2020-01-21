@@ -9,6 +9,13 @@
 #define CPE_MATCHSTICK_2019_MATCHSTICK_H
 
 #include <stdbool.h>
+#include <stdlib.h>
+
+typedef struct s_struct {
+    int line;
+    int stick_taken;
+    int return_check;
+} game_t;
 
 int my_putstr(char const *str);
 
@@ -24,15 +31,13 @@ int my_str_isnum(char const *str);
 
 int my_strlen(char const *str);
 
-long int select_line(int size);
-
-void freeing_recursive(char *line, int size);
+int select_line(int size, int maxStick, game_t *game, char **tab);
 
 int my_printf(char const *str, ...);
 
-int check_stick(int size);
+int check_stick(int maxstick, int size, game_t *game, char **tab);
 
-char *modify_str(char const *str);
+char *modify_str(char *str);
 
 char *modify_map(char **tab, long int line, long int stick_taken);
 
@@ -41,5 +46,7 @@ bool check_end_game(char **tab);
 char **player_move(char **tab, int size, int maxStick, int *turn);
 
 char **ai_move(char **tab, int size, int maxStick, int *turn);
+
+int playing(game_t *game, int size, int maxStick, char **tab);
 
 #endif //CPE_MATCHSTICK_2019_MATCHSTICK_H

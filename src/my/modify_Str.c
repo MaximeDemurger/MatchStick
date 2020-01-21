@@ -9,10 +9,10 @@
 
 int my_strlen(char const *str);
 
-char *modify_str(char const *str)
+char *modify_str(char *str)
 {
     int i = 0;
-    char *dest = malloc(sizeof(char) * my_strlen(str));
+    char *dest = malloc(sizeof(char) * (my_strlen(str) + 1));
 
     while (str[i] != '\n') {
         dest[i] = str[i];

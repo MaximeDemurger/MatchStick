@@ -10,33 +10,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void freeing_recursive(char *line, int size)
-{
-    free(line);
-    select_line(size);
-}
-
-long int select_line(int size)
+int select_line(int size, int maxStick, game_t *game, char **tab)
 {
     char *line = NULL;
-    size_t size_line;
-    long int chose = 0;
+    size_t size_line = 0;
+    int chose = 0;
 
+    game->line = 0;
     my_putstr("Line: ");
+    free(line);
     while (getline(&line, &size_line, stdin) > 0) {
         if (my_str_isnum(line) == 1) {
             my_printf("Error: invalid input (positive number expected)\n");
-            freeing_recursive(line, size);
+            playing(game, size, maxStick, tab);
         }
-        if (!(chose = my_atoi(modify_str(line))))
-            return -1;
+        chose = my_atoi(modify_str(line));
         if (chose > size || chose < 1) {
             my_putstr("Error: this line is out of range\n");
-            freeing_recursive(line, size);
-        } else {
-            free(line);
-            return chose;
+            playing(game, size, maxStick, tab);
         }
+        printf("choose line %d\n", chose);
+        return chose;
     }
     return 0;
 }

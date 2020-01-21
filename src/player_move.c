@@ -12,7 +12,9 @@ int check_matches(char **tab, long int line, long int stick)
     long int nbr_stick = 0;
     int i = 0;
 
-    while (tab[line][i]) {
+    if (tab == NULL)
+        return 84;
+    while (tab[line][i] != '\0') {
         if (tab[line][i] == '|')
             nbr_stick++;
         i++;
@@ -24,22 +26,28 @@ int check_matches(char **tab, long int line, long int stick)
     return 0;
 }
 
+int playing(game_t *game, int size, int maxStick, char **tab)
+{
+    game->line = select_line(size, maxStick, game, tab);
+    game->stick_taken = check_stick(maxStick, size, game, tab);
+    game->return_check = check_matches(tab, game->line, game->stick_taken);
+    return 0;
+}
+
 char **player_move(char **tab, int size, int maxStick, int *turn)
 {
-    long int line = 0;
-    long int stick_taken = 0;
-    int return_check = 0;
     bool good_match = false;
+    game_t *game = malloc(sizeof(game_t *));
 
+    my_putstr("Your turn...\n");
     while (good_match == false) {
-        line = select_line(size);
-        stick_taken = check_stick(maxStick);
-        return_check = check_matches(tab, line, stick_taken);
-        if (return_check != -1)
+        playing(game, size, maxStick, tab);
+        if (game->return_check != -1)
             good_match = true;
     }
-    tab[line] = modify_map(tab, line, stick_taken);
-    my_printf("Player removed %d match(es) from line %d\n", stick_taken, line);
+    tab[game->line] = modify_map(tab, game->line, game->stick_taken);
+    my_printf("Player removed %d match(es) from line %d\n", game->stick_taken,
+            game->line);
     *turn = 1;
     return tab;
 }

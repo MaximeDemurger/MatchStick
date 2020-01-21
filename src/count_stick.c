@@ -6,32 +6,31 @@
 */
 
 #include <stddef.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include "matchstick.h"
 
-int check_stick(int stick_taken)
+int check_stick(int maxStick, int size, game_t *game, char **tab)
 {
     char *line = NULL;
     size_t size_line = 0;
     int chose = 0;
 
+    game->stick_taken = 0;
     my_putstr("Matches: ");
+    free(line);
     while (getline(&line, &size_line, stdin) > 0) {
         if (my_str_isnum(line) == 1) {
             my_putstr("Error: invalid input (positive number expected)\n");
-            freeing_recursive(line, stick_taken);
+            playing(game, size, maxStick, tab);
         }
-        if (!(chose = my_atoi(modify_str(line))))
-            return -1;
-        if (chose > stick_taken || chose < 1) {
+        chose = my_atoi(modify_str(line));
+        if (chose > maxStick || chose < 1) {
             my_printf("Error: you cannot remove more than %d matches per "
-                      "turn\n", stick_taken);
-            freeing_recursive(line, stick_taken);
-        } else {
-            free(line);
-            return chose;
+                      "turn\n", maxStick);
+            playing(game, size, maxStick, tab);
         }
+        printf("choose %d\n", chose);
+        return chose;
     }
     return 0;
 }

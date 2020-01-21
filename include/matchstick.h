@@ -31,11 +31,11 @@ int my_str_isnum(char const *str);
 
 int my_strlen(char const *str);
 
-int select_line(int size, int maxStick, game_t *game, char **tab);
+int select_line(int size, game_t *game);
 
 int my_printf(char const *str, ...);
 
-int check_stick(int maxstick, int size, game_t *game, char **tab);
+int check_stick(int maxStick, int size, game_t *game);
 
 char *modify_str(char *str);
 

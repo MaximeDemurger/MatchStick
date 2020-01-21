@@ -32,9 +32,10 @@ int in_loop(char **tab, int size, int maxStick)
         end_game = check_end_game(tab);
         if (print_actual_map(tab, end_game) < 0)
             return 84;
-        if (turn == 0 && end_game == false)
-            tab = player_move(tab, size, maxStick, &turn);
-        else if (turn == 1 && end_game == false)
+        if (turn == 0 && end_game == false) {
+            if (!(tab = player_move(tab, size, maxStick, &turn)))
+                return 0;
+        } else if (turn == 1 && end_game == false)
             tab = ai_move(tab, size, maxStick, &turn);
     }
     if (turn == 1) {

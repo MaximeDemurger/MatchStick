@@ -33,11 +33,11 @@ long int choose_stick(int maxStick, char **tab, long int line)
 {
     long int stickTaken = 0;
 
-    stickTaken = random() % (maxStick + 2);
+    stickTaken = random() % maxStick;
     if (stickTaken == 0)
-        choose_stick(maxStick, tab, line);
-    if (check_ai(tab, line) == 0)
-        choose_stick(maxStick, tab, line);
+        stickTaken = choose_stick(maxStick, tab, line);
+    if (check_ai(tab, line) < stickTaken)
+        stickTaken = choose_stick(maxStick, tab, line);
     return stickTaken;
 }
 
@@ -47,7 +47,7 @@ long int choose_line(int size, char **tab)
 
     line = random() % size;
     if (check_ai(tab, line) == 0)
-        choose_line(size, tab);
+        line = choose_line(size, tab);
     return line;
 }
 

@@ -28,8 +28,8 @@ int check_matches(char **tab, long int line, long int stick)
 
 int playing(game_t *game, int size, int maxStick, char **tab)
 {
-    game->line = select_line(size, maxStick, game, tab);
-    game->stick_taken = check_stick(maxStick, size, game, tab);
+    if (select_line(size, game) == 1 || check_stick(maxStick, size, game))
+        return 1;
     game->return_check = check_matches(tab, game->line, game->stick_taken);
     return 0;
 }
@@ -41,7 +41,8 @@ char **player_move(char **tab, int size, int maxStick, int *turn)
 
     my_putstr("Your turn...\n");
     while (good_match == false) {
-        playing(game, size, maxStick, tab);
+        if (playing(game, size, maxStick, tab) == 1)
+            return NULL;
         if (game->return_check != -1)
             good_match = true;
     }
